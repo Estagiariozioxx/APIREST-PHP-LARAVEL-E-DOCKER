@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
+            $table->string('nome_completo');
+            $table->string('data_nascimento');
+            $table->string('cpf')->unique();
+            $table->string('email')->unique();
+            $table->string('senha');
+            $table->string('endereco_cobranca_cep');
+            $table->string('endereco_cobranca_complemento')->nullable();
+            $table->string('endereco_cobranca_numero');
             $table->timestamps();
         });
     }
