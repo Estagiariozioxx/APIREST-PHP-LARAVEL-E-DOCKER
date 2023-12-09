@@ -3,44 +3,54 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
-
 use Illuminate\Http\Request;
 
-class PlayerController extends Controller{
-
-    public function index(){
+class PlayerController extends Controller
+{
+    // display a listing of the resource. treturn json
+    public function index()
+    {
         $players = Player::all();
         return response()->json($players);
-
     }
-    public function store(Request $request){
-        $validateData=$request->validate([
-            'name'=>'required|string',
-            'email'=>'required|string',
+
+    // store a newly created resource in storage.
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string',
         ]);
-        $player = Player::create($validateData);
-        return response()->json($player,201);
 
+        $player = Player::create($validatedData);
+
+        return response()->json($player, 201);
     }
 
-    public function show(player $player){
+    // display the specified resource.
+    public function show(Player $player)
+    {
         return response()->json($player);
     }
 
-    public function update(Request $request, Player $player){
-        $validateData=$request->validate([
-            'name'=>'required|string',
-            'email'=>'required|string',
+    // update the specified resource in storage.
+    public function update(Request $request, Player $player)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string',
         ]);
-        $player->update($validateData);
-        return response()->json($player,200);
+
+        $player->update($validatedData);
+
+        return response()->json($player, 200);
     }
-    public function destroy (Player $player){
+
+    // remove the specified resource from storage.
+    public function destroy(Player $player)
+    {
         $player->delete();
 
-        return response()->json(null,201);
+        return response()->json(null, 204);
     }
-
-   
-
 }

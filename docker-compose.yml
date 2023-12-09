@@ -3,7 +3,7 @@ version: "3.9"
 services:
   laravelapp:
     container_name: laravelapp
-    image: leonardo/laravelapp:1.0.4
+    image: leonardo/laravelapp:1.0.5
     build: .
     ports:
       - "8000:8000"
@@ -16,11 +16,11 @@ services:
     container_name: db
     image: postgres:12
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres123
-      POSTGRES_DB: crud_api
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
 
